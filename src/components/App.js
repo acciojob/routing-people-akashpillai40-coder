@@ -15,27 +15,34 @@ const App = () => {
       })
       .then((data) => {
         setUsers(data); //users= {data}
-        console.log(data);
+        setLoading(false);
       })
       .catch((err) => console.log(err.message));
   }, []);
+
   return (
     <BrowserRouter>
       <div>
-       
         <Routes>
-          <Route path="/" element={ 
-            <div><h1>User List</h1> 
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              <Link to={`/users/${user.id}`}>{user.name}</Link>
-            </li>
-          ))}
-        </ul>
-        </div>
-      } 
-      />
+          <Route
+            path="/"
+            element={
+              loading ? (
+                <div>Loading...</div>
+              ) : (
+                <div>
+                  <h1>User List</h1>
+                  <ul>
+                    {users.map((user) => (
+                      <li key={user.id}>
+                        <Link to={`/users/${user.id}`}>{user.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+          />
           <Route path="/users/:id" element={<UserProfile />} />
         </Routes>
       </div>
