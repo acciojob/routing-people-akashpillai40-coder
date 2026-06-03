@@ -4,9 +4,10 @@ module.exports = {
     entry: './src/index.js',
 
     output: {
-        path: path.join(__dirname,"/dist"),
-        filename: "index_bundle.js",
-    },
+    filename: 'index_bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'  // 💡 THIS IS THE MAGIC FIX: Tells the browser to look at http://localhost:8081/index_bundle.js
+  },
     module:{
         rules: [
             {
