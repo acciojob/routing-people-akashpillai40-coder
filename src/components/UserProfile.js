@@ -8,6 +8,8 @@ const UserProfile = () => {
     const [loading, setLoading] = useState(true);
 
      useEffect(() =>{
+
+        setLoading(true)
         
         fetch (`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res)=> res.json())
